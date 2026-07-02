@@ -98,19 +98,21 @@ export default function AssessPage() {
           <Button
             type="submit"
             variant="primary"
+            size="lg"
             fullWidth
             isLoading={isLoading}
-            className="text-lg py-5 rounded-2xl font-black shadow-md bg-[#007a87] hover:bg-[#006670] active:bg-[#00525a]"
+            className="rounded-2xl shadow-md bg-[#007a87] hover:bg-[#006670] active:bg-[#00525a]"
           >
-            View My Result →
+            View Your Result →
           </Button>
 
           <Button
             type="button"
             variant="outline"
+            size="sm"
             fullWidth
             onClick={handleBack}
-            className="text-base py-4 rounded-2xl font-extrabold text-slate-600 border border-slate-300 hover:bg-slate-50"
+            className="rounded-2xl text-slate-600 border border-slate-300 hover:bg-slate-50"
           >
             ← BACK
           </Button>

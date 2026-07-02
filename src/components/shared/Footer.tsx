@@ -14,10 +14,10 @@ export const Footer: React.FC = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-slate-800 gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-lg text-white">KneeRehab Program Assessment</span>
+            <span className="font-bold text-lg text-white">KRPS Program Assessment</span>
           </div>
           <p className="text-base text-slate-500">
-            &copy; {new Date().getFullYear()} KneeRehab Program. All rights reserved.
+            &copy; {new Date().getFullYear()} KRPS Program. All rights reserved.
           </p>
         </div>
       </div>

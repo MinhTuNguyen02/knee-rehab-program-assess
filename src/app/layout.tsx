@@ -4,7 +4,7 @@ import { Header } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
 
 export const metadata: Metadata = {
-  title: "Knee Rehab Program - Assessment",
+  title: "KRPS - Knee Rehab Program Assessment",
   description: "Quickly assess your knee health at home with simple, intuitive sliders and get clinical program recommendations.",
 };
 

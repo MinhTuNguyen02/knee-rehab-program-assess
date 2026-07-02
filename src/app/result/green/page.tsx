@@ -24,7 +24,7 @@ function GreenResultContent() {
 
   const router = useRouter();
   const handleBack = () => {
-    router.push('/');
+    router.push('/assess');
   };
 
   return (
@@ -50,7 +50,7 @@ function GreenResultContent() {
         </div>
         <Link
           href={assessmentId ? `/opt-in/${assessmentId}` : '/opt-in'}
-          className="w-full inline-flex items-center justify-center bg-[#007a87] hover:bg-[#006670] active:bg-[#00525a] text-white text-xl font-black py-5 px-8 rounded-2xl shadow-md transition duration-300 ease-out text-center focus-visible:ring-4 focus-visible:ring-teal-500/40 min-h-[60px]"
+          className="w-full inline-flex items-center justify-center bg-[#007a87] hover:bg-[#006670] active:bg-[#00525a] text-white text-xl font-black py-5.5 px-8 rounded-2xl shadow-md transition duration-300 ease-out text-center focus-visible:ring-4 focus-visible:ring-teal-500/40 min-h-[64px]"
         >
           Track My Score &amp; Improve My Knee ➔
         </Link>
@@ -61,9 +61,10 @@ function GreenResultContent() {
         <Button
           type="button"
           variant="outline"
+          size="sm"
           fullWidth
           onClick={handleBack}
-          className="text-base py-4 rounded-2xl font-extrabold text-slate-600 border border-slate-300 hover:bg-slate-50"
+          className="rounded-2xl text-slate-600 border border-slate-300 hover:bg-slate-50"
         >
           ← Retake assessment
         </Button>

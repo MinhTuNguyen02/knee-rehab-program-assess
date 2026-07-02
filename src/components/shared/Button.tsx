@@ -2,6 +2,7 @@ import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
   fullWidth?: boolean;
 }
@@ -9,14 +10,21 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'primary',
+  size = 'md',
   isLoading = false,
   fullWidth = false,
   className = '',
   disabled,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-bold text-xl rounded-2xl transition duration-300 ease-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-500/40 cursor-pointer min-h-[48px] px-6 py-4 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center font-bold rounded-2xl transition duration-300 ease-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-500/40 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
   
+  const sizeStyles = {
+    sm: 'min-h-[40px] px-5 py-2.5 text-base font-extrabold',
+    md: 'min-h-[48px] px-6 py-4 text-xl',
+    lg: 'min-h-[64px] px-8 py-5 text-xl font-black'
+  };
+
   const variantStyles = {
     primary: 'bg-[#007a87] hover:bg-[#006670] active:bg-[#00525a] text-white shadow-md',
     secondary: 'bg-slate-100 hover:bg-slate-200 text-slate-850 active:bg-slate-300 border border-slate-200 shadow-sm',
@@ -29,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       disabled={disabled || isLoading}
-      className={`${baseStyles} ${variantStyles[variant]} ${widthStyle} ${className}`}
+      className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${widthStyle} ${className}`}
       {...props}
     >
       {isLoading ? (

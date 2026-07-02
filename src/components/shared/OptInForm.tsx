@@ -31,9 +31,9 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
       kneeSide: '',
       consentAccepted: false,
       notificationPrefs: {
-        followUpKRP: true,
-        kneeGuidance: true,
-        reassessReminder: true,
+        followUpKRP: false,
+        kneeGuidance: false,
+        reassessReminder: false,
       },
     },
   });
@@ -295,6 +295,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
         <Button
           type="submit"
           variant="primary"
+          size="lg"
           fullWidth
           isLoading={isSubmitting}
           className="mt-4"
