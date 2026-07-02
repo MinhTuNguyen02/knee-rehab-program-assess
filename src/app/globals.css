@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-krp-green: #10B981;
+  --color-krp-amber: #F59E0B;
+  --color-krp-red: #EF4444;
+}
+
+:root {
+  --background: #f5f8fa; /* Soft off-white with slight blue/teal tint */
+  --foreground: #1e293b; /* Softer dark gray slate-800 */
+  --primary: #007a87; /* Soft premium teal */
+  --primary-hover: #006670;
+  --primary-active: #00525a;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px; /* text-lg per rules */
+  line-height: 1.6;
+}
+
+/* Custom styled range input for accessible 48px touch targets */
+.accessible-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 6px;
+  outline: none;
+  background: #e2e8f0;
+}
+
+.accessible-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 8px -2px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.accessible-slider::-webkit-slider-thumb:hover {
+  background: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+.accessible-slider::-webkit-slider-thumb:active {
+  background: var(--primary-active);
+}
+
+.accessible-slider::-moz-range-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 8px -2px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.accessible-slider::-moz-range-thumb:hover {
+  background: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+.accessible-slider::-moz-range-thumb:active {
+  background: var(--primary-active);
+}
+
+.accessible-slider:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 122, 135, 0.4); /* ring soft teal */
+}
