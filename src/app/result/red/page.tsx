@@ -4,6 +4,8 @@ import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ZoneCard } from '@/components/shared/ZoneCard';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/shared/Button';
 
 function RedResultContent() {
   const searchParams = useSearchParams();
@@ -19,6 +21,11 @@ function RedResultContent() {
     'Use cold therapy (ice packs wrapped in a towel) for 15 minutes to manage acute pain or swelling.',
     'Ask your doctor about structured, clinical knee rehabilitation programs.'
   ];
+
+  const router = useRouter();
+  const handleBack = () => {
+    router.push('/');
+  };
 
   return (
     <div className="flex-1 flex flex-col justify-center py-12 px-4 md:px-6 max-w-2xl mx-auto w-full space-y-8">
@@ -61,6 +68,19 @@ function RedResultContent() {
         >
           Track My Score &amp; Improve My Knee ➔
         </Link>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex flex-col gap-4 pt-4">
+        <Button
+          type="button"
+          variant="outline"
+          fullWidth
+          onClick={handleBack}
+          className="text-base py-4 rounded-2xl font-extrabold text-slate-600 border border-slate-300 hover:bg-slate-50"
+        >
+          ← Retake assessment
+        </Button>
       </div>
     </div>
   );

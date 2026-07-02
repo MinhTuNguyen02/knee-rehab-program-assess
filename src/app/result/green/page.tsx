@@ -4,6 +4,8 @@ import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ZoneCard } from '@/components/shared/ZoneCard';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/shared/Button';
 
 function GreenResultContent() {
   const searchParams = useSearchParams();
@@ -19,6 +21,11 @@ function GreenResultContent() {
     'Stay hydrated and maintain a healthy diet to nourish joint cartilage.',
     'Take this assessment monthly to stay proactive about your knee health.'
   ];
+
+  const router = useRouter();
+  const handleBack = () => {
+    router.push('/');
+  };
 
   return (
     <div className="flex-1 flex flex-col justify-center py-12 px-4 md:px-6 max-w-2xl mx-auto w-full space-y-8">
@@ -47,6 +54,19 @@ function GreenResultContent() {
         >
           Track My Score &amp; Improve My Knee ➔
         </Link>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex flex-col gap-4 pt-4">
+        <Button
+          type="button"
+          variant="outline"
+          fullWidth
+          onClick={handleBack}
+          className="text-base py-4 rounded-2xl font-extrabold text-slate-600 border border-slate-300 hover:bg-slate-50"
+        >
+          ← Retake assessment
+        </Button>
       </div>
     </div>
   );

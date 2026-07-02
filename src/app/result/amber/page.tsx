@@ -4,6 +4,8 @@ import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ZoneCard } from '@/components/shared/ZoneCard';
+import { Button } from '@/components/shared/Button';
+import { useRouter } from 'next/navigation';
 
 function AmberResultContent() {
   const searchParams = useSearchParams();
@@ -18,6 +20,11 @@ function AmberResultContent() {
     'Focus on gentle knee-stabilizing exercises (e.g. straight leg raises, wall sits).',
     'Apply a warm compress for 15-20 minutes in the evening to relax surrounding muscles.'
   ];
+
+  const router = useRouter();
+  const handleBack = () => {
+    router.push('/');
+  };
 
   return (
     <div className="flex-1 flex flex-col justify-center py-12 px-4 md:px-6 max-w-2xl mx-auto w-full space-y-8">
@@ -54,6 +61,19 @@ function AmberResultContent() {
         >
           Track My Score &amp; Improve My Knee ➔
         </Link>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex flex-col gap-4 pt-4">
+        <Button
+          type="button"
+          variant="outline"
+          fullWidth
+          onClick={handleBack}
+          className="text-base py-4 rounded-2xl font-extrabold text-slate-600 border border-slate-300 hover:bg-slate-50"
+        >
+          ← Retake assessment
+        </Button>
       </div>
     </div>
   );
