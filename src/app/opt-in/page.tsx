@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { OptInForm } from '@/components/shared/OptInForm';
+import { OptInForm } from '@/components/forms/OptInForm';
 
 export default function GeneralOptInPage() {
   return (

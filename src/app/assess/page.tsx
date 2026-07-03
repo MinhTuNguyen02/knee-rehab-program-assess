@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { SliderInput } from '@/components/shared/SliderInput';
-import { Button } from '@/components/shared/Button';
+import { SliderInput } from '@/components/ui/SliderInput';
+import { Button } from '@/components/ui/Button';
 import { submitAssessment } from '@/lib/api';
 
-export default function AssessPage() {
+export default function AssessmentPage() {
   const [pain, setPain] = useState<number>(5);
   const [func, setFunc] = useState<number>(5);
   const [isLoading, setIsLoading] = useState<boolean>(false);

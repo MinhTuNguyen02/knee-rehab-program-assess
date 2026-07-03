@@ -7,7 +7,7 @@ import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { submitOptIn } from '@/lib/api';
 import { OptInFormData } from '@/types';
-import { Button } from './Button';
+import { Button } from '../ui/Button';
 
 interface OptInFormProps {
   assessmentId?: string;

@@ -2,8 +2,8 @@
 
 import React, { Suspense } from 'react';
 import { useSearchParams, useParams, useRouter } from 'next/navigation';
-import { ZoneCard } from '@/components/shared/ZoneCard';
-import { Button } from '@/components/shared/Button';
+import { ZoneCard } from '@/components/ui/ZoneCard';
+import { Button } from '@/components/ui/Button';
 
 const ZONE_CONTENT = {
   green: {
@@ -40,17 +40,17 @@ const ZONE_CONTENT = {
 function DynamicResultContent() {
   const params = useParams();
   const zone = (params?.zone as string) || 'green';
-  
+
   const searchParams = useSearchParams();
   const assessmentId = searchParams.get('id') || undefined;
   const scoreParam = searchParams.get('score');
   const score = scoreParam ? Number(scoreParam) : undefined;
-  
+
   const painParam = searchParams.get('pain');
   const funcParam = searchParams.get('func');
   const painScore = painParam !== null && !isNaN(Number(painParam)) ? Number(painParam) : undefined;
   const funcScore = funcParam !== null && !isNaN(Number(funcParam)) ? Number(funcParam) : undefined;
-  
+
   const router = useRouter();
 
   // Validate zone, default to green if invalid
