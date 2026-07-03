@@ -41,14 +41,15 @@ body {
   border-radius: 50%;
   background: var(--primary);
   border: 4px solid #ffffff;
-  box-shadow: 0 4px 8px -2px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 8px 30px rgba(0, 122, 135, 0.3);
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
 }
 
 .accessible-slider::-webkit-slider-thumb:hover {
   background: var(--primary-hover);
   transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 122, 135, 0.5);
 }
 
 .accessible-slider::-webkit-slider-thumb:active {
@@ -61,14 +62,15 @@ body {
   border-radius: 50%;
   background: var(--primary);
   border: 4px solid #ffffff;
-  box-shadow: 0 4px 8px -2px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 8px 30px rgba(0, 122, 135, 0.3);
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
 }
 
 .accessible-slider::-moz-range-thumb:hover {
   background: var(--primary-hover);
   transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 122, 135, 0.5);
 }
 
 .accessible-slider::-moz-range-thumb:active {
@@ -78,4 +80,57 @@ body {
 .accessible-slider:focus-visible {
   outline: none;
   box-shadow: 0 0 0 4px rgba(0, 122, 135, 0.4); /* ring soft teal */
+}
+
+/* ─── Phone Input (react-phone-number-input) ─── */
+.phone-input-custom {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.phone-input-custom:focus-within {
+  border-color: #007a87;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(204, 251, 241, 0.6);
+}
+
+/* Country selector button */
+.phone-input-custom .PhoneInputCountry {
+  margin-right: 0.75rem;
+  padding-right: 0.75rem;
+  border-right: 2px solid #e2e8f0;
+}
+
+.phone-input-custom .PhoneInputCountryIcon {
+  width: 28px;
+  height: 20px;
+}
+
+.phone-input-custom .PhoneInputCountrySelectArrow {
+  margin-left: 0.375rem;
+  opacity: 0.5;
+}
+
+/* Phone number input field */
+.phone-input-custom .PhoneInputInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: #1e293b;
+}
+
+.phone-input-custom .PhoneInputInput::placeholder {
+  color: #94a3b8;
 }

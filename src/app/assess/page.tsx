@@ -21,7 +21,7 @@ export default function AssessPage() {
     try {
       const res = await submitAssessment(pain, func);
       // Navigate to the respective result route with assessment id and score
-      router.push(`/result/${res.zone}?id=${res.id}&score=${res.score}`);
+      router.push(`/result/${res.zone}?id=${res.id}&score=${res.score}&pain=${res.pain}&func=${res.functionScore}`);
     } catch (err: any) {
       console.error('Submit assessment error:', err);
       setApiError(err.message || 'Failed to submit the assessment. Please check your network connection.');
@@ -101,7 +101,7 @@ export default function AssessPage() {
             size="lg"
             fullWidth
             isLoading={isLoading}
-            className="rounded-2xl shadow-md bg-[#007a87] hover:bg-[#006670] active:bg-[#00525a]"
+            className="rounded-2xl"
           >
             View Your Result →
           </Button>
