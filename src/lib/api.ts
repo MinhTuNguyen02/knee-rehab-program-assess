@@ -30,7 +30,7 @@ export async function submitOptIn(
     mobile: formData.mobile,
     age: Number(formData.age),
     gender: formData.gender,
-    kneeSide: formData.kneeSide === 'left' ? 'L' : formData.kneeSide === 'right' ? 'R' : 'both',
+    kneeSide: formData.kneeSide === 'left' ? 'L' : formData.kneeSide === 'right' ? 'R' : 'B',
     consentAccepted: formData.consentAccepted,
     notificationPrefs: formData.notificationPrefs,
     ...(assessmentId ? { assessmentId } : {}),
