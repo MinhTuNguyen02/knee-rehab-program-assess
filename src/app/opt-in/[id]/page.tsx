@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useParams } from 'next/navigation';
-import { OptInForm } from '@/components/shared/OptInForm';
+import { OptInForm } from '@/components/forms/OptInForm';
 
 export default function AssessmentOptInPage() {
   const params = useParams();

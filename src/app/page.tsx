@@ -24,7 +24,7 @@ export default function LandingPage() {
         <div className="pt-2 relative z-10 max-w-md mx-auto">
           <Link
             href="/assess"
-            className="w-full inline-flex items-center justify-center bg-white hover:bg-teal-50 text-[#007a87] text-xl font-black py-5 px-8 rounded-2xl shadow-lg transition duration-300 ease-out text-center focus-visible:ring-4 focus-visible:ring-teal-200 min-h-[64px]"
+            className="w-full inline-flex items-center justify-center bg-white hover:bg-teal-50 text-[#007a87] text-xl font-black py-5 px-8 rounded-2xl shadow-[0_8px_30px_rgba(0,122,135,0.3)] hover:shadow-[0_12px_40px_rgba(0,122,135,0.5)] transition duration-300 ease-out text-center focus-visible:ring-4 focus-visible:ring-teal-200 min-h-[64px]"
           >
             Start Your Knee Assessment →
           </Link>
@@ -173,7 +173,7 @@ export default function LandingPage() {
         <div className="flex flex-col gap-4 pt-2">
           <Link
             href="/assess"
-            className="w-full inline-flex items-center justify-center bg-[#007a87] hover:bg-[#006670] active:bg-[#00525a] text-white text-xl font-black py-5 px-8 rounded-2xl shadow-md transition duration-300 ease-out text-center focus-visible:ring-4 focus-visible:ring-teal-500/40 min-h-[60px]"
+            className="w-full inline-flex items-center justify-center bg-[#007a87] hover:bg-[#006670] active:bg-[#00525a] text-white text-xl font-black py-5 px-8 rounded-2xl shadow-[0_8px_30px_rgba(0,122,135,0.3)] hover:shadow-[0_12px_40px_rgba(0,122,135,0.5)] transition duration-300 ease-out text-center focus-visible:ring-4 focus-visible:ring-teal-500/40 min-h-[60px]"
           >
             Start Knee Assessment →
           </Link>

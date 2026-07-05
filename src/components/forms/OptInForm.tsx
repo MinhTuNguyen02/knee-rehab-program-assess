@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import { submitOptIn } from '@/lib/api';
 import { OptInFormData } from '@/types';
-import { Button } from './Button';
+import { Button } from '../ui/Button';
 
 interface OptInFormProps {
   assessmentId?: string;
@@ -19,6 +21,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<OptInFormData>({
     defaultValues: {
@@ -56,7 +59,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
     <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
       <div className="space-y-2">
         <h3 className="text-2xl font-black text-slate-900 leading-tight">
-          🎁 Get Your Free Personalized Rehab Plan
+          Get Your Free Personalized Rehab Plan
         </h3>
         <p className="text-lg text-slate-650 font-medium leading-relaxed">
           Our team of specialists will send you a tailored video exercise guide. Enter your details below.
@@ -65,7 +68,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
 
       {apiError && (
         <div className="p-4 bg-red-50 border-2 border-red-500 text-red-900 rounded-xl font-bold text-lg" role="alert">
-          ⚠️ {apiError}
+          {apiError}
         </div>
       )}
 
@@ -78,7 +81,8 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
             </label>
             <input
               id="firstName"
-              {...register('firstName', { required: 'Please enter your first name' })}
+              {...register('firstName')}
+              required
               type="text"
               placeholder="John"
               className="w-full min-h-[48px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
@@ -98,7 +102,8 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
             </label>
             <input
               id="lastName"
-              {...register('lastName', { required: 'Please enter your last name' })}
+              {...register('lastName')}
+              required
               type="text"
               placeholder="Doe"
               className="w-full min-h-[48px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
@@ -112,58 +117,62 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Email */}
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-lg font-bold text-slate-800 block">
-              Email Address:
-            </label>
-            <input
-              id="email"
-              {...register('email', {
-                required: 'Please enter your email address',
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: 'Please enter a valid email address',
-                },
-              })}
-              type="email"
-              placeholder="john.doe@example.com"
-              className="w-full min-h-[48px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
-              aria-invalid={errors.email ? 'true' : 'false'}
-            />
-            {errors.email && (
-              <p className="text-red-600 font-bold text-base mt-1" role="alert">
-                {errors.email.message}
-              </p>
-            )}
-          </div>
+        {/* Email — full width */}
+        <div className="space-y-2">
+          <label htmlFor="email" className="text-lg font-bold text-slate-800 block">
+            Email Address:
+          </label>
+          <input
+            id="email"
+            {...register('email', {
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: 'Please enter a valid email address',
+              },
+            })}
+            required
+            type="email"
+            placeholder="john.doe@example.com"
+            className="w-full min-h-[48px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
+            aria-invalid={errors.email ? 'true' : 'false'}
+          />
+          {errors.email && (
+            <p className="text-red-600 font-bold text-base mt-1" role="alert">
+              {errors.email.message}
+            </p>
+          )}
+        </div>
 
-          {/* Mobile Phone */}
-          <div className="space-y-2">
-            <label htmlFor="mobile" className="text-lg font-bold text-slate-800 block">
-              Mobile:
-            </label>
-            <input
-              id="mobile"
-              {...register('mobile', {
-                required: 'Please enter your mobile phone number',
-                pattern: {
-                  value: /^\+?[0-9\s-]{10,15}$/,
-                  message: 'Please enter a valid phone number (10-15 digits)',
-                },
-              })}
-              type="tel"
-              placeholder="Mobile Number"
-              className="w-full min-h-[48px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
-              aria-invalid={errors.mobile ? 'true' : 'false'}
-            />
-            {errors.mobile && (
-              <p className="text-red-600 font-bold text-base mt-1" role="alert">
-                {errors.mobile.message}
-              </p>
+        {/* Mobile Phone — full width with country selector */}
+        <div className="space-y-2">
+          <label htmlFor="mobile" className="text-lg font-bold text-slate-800 block">
+            Mobile:
+          </label>
+          <Controller
+            name="mobile"
+            control={control}
+            rules={{
+              required: 'Please enter your mobile phone number',
+              validate: (value) =>
+                !value || isValidPhoneNumber(value) || 'Please enter a valid phone number',
+            }}
+            render={({ field: { onChange, value } }) => (
+              <PhoneInput
+                international
+                defaultCountry="AU"
+                placeholder="Enter phone number"
+                value={value}
+                onChange={(val) => onChange(val || '')}
+                id="mobile"
+                className="phone-input-custom"
+              />
             )}
-          </div>
+          />
+          {errors.mobile && (
+            <p className="text-red-600 font-bold text-base mt-1" role="alert">
+              {errors.mobile.message}
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -175,11 +184,13 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
             <input
               id="age"
               {...register('age', {
-                required: 'Please enter your age',
                 min: { value: 1, message: 'Age must be at least 1' },
                 max: { value: 120, message: 'Age cannot exceed 120' },
                 valueAsNumber: true,
               })}
+              min={1}
+              max={120}
+              required
               type="number"
               placeholder="Year"
               className="w-full h-[56px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
@@ -222,7 +233,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
             </label>
             <select
               id="kneeSide"
-              {...register('kneeSide', { required: 'Please select which knee' })}
+              {...register('kneeSide')}
               className="w-full h-[56px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition cursor-pointer"
               aria-invalid={errors.kneeSide ? 'true' : 'false'}
             >
@@ -292,16 +303,40 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
           )}
         </div>
 
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          fullWidth
-          isLoading={isSubmitting}
-          className="mt-4"
-        >
-          Submit & Receive My Program ➔
-        </Button>
+        <div className="flex flex-col gap-4 pt-4">
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            fullWidth
+            isLoading={isSubmitting}
+          >
+            Submit & Receive My Program ➔
+          </Button>
+
+          {assessmentId && (
+            <Button
+              type="button"
+              variant="secondary"
+              size="md"
+              fullWidth
+              onClick={() => router.push('/thank-you')}
+            >
+              Skip for now
+            </Button>
+          )}
+
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            fullWidth
+            onClick={() => router.back()}
+            className="rounded-2xl text-slate-600 border border-slate-300 hover:bg-slate-50"
+          >
+            ← BACK
+          </Button>
+        </div>
       </form>
     </div>
   );

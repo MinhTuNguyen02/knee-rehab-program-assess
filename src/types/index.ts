@@ -4,7 +4,7 @@ export interface AssessmentResponse {
   id: string;
   display_id: number;
   pain: number;
-  function: number;
+  functionScore: number;
   score: number;
   zone: Zone;
   timestamp: string;
