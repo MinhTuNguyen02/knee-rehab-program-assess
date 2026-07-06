@@ -175,7 +175,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className={`grid grid-cols-1 ${assessmentId ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6`}>
           {/* Age */}
           <div className="space-y-2">
             <label htmlFor="age" className="text-lg font-bold text-slate-800 block">
@@ -214,7 +214,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
               className="w-full h-[56px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition cursor-pointer"
               aria-invalid={errors.gender ? 'true' : 'false'}
             >
-              <option value="">-- Select --</option>
+              <option value="">Select...</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -226,28 +226,30 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
             )}
           </div>
 
-          {/* Knee Side */}
-          <div className="space-y-2">
-            <label htmlFor="kneeSide" className="text-lg font-bold text-slate-800 block">
-              Knee Side:
-            </label>
-            <select
-              id="kneeSide"
-              {...register('kneeSide')}
-              className="w-full h-[56px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition cursor-pointer"
-              aria-invalid={errors.kneeSide ? 'true' : 'false'}
-            >
-              <option value="">-- Select --</option>
-              <option value="left">Left Knee</option>
-              <option value="right">Right Knee</option>
-              <option value="both">Both Knees</option>
-            </select>
-            {errors.kneeSide && (
-              <p className="text-red-650 font-bold text-base mt-1" role="alert">
-                {errors.kneeSide.message}
-              </p>
-            )}
-          </div>
+          {/* Knee Side (Only shown if coming from an assessment) */}
+          {assessmentId && (
+            <div className="space-y-2">
+              <label htmlFor="kneeSide" className="text-lg font-bold text-slate-800 block">
+                Knee Side:
+              </label>
+              <select
+                id="kneeSide"
+                {...register('kneeSide')}
+                className="w-full h-[56px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition cursor-pointer"
+                aria-invalid={errors.kneeSide ? 'true' : 'false'}
+              >
+                <option value="">Select...</option>
+                <option value="left">Left Knee</option>
+                <option value="right">Right Knee</option>
+                <option value="both">Both Knees</option>
+              </select>
+              {errors.kneeSide && (
+                <p className="text-red-650 font-bold text-base mt-1" role="alert">
+                  {errors.kneeSide.message}
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Notification Preferences */}
