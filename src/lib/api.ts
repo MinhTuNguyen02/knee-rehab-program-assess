@@ -1,6 +1,6 @@
 import { AssessmentResponse, OptInFormData } from '@/types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function submitAssessment(pain: number, func: number): Promise<AssessmentResponse> {
   const response = await fetch(`${API_BASE_URL}/assessments`, {

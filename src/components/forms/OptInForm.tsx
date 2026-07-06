@@ -8,6 +8,7 @@ import 'react-phone-number-input/style.css';
 import { submitOptIn } from '@/lib/api';
 import { OptInFormData } from '@/types';
 import { Button } from '../ui/Button';
+import toast from 'react-hot-toast';
 
 interface OptInFormProps {
   assessmentId?: string;
@@ -15,7 +16,6 @@ interface OptInFormProps {
 
 export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
   const router = useRouter();
-  const [apiError, setApiError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
@@ -43,13 +43,13 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
 
   const onSubmit = async (data: OptInFormData) => {
     setIsSubmitting(true);
-    setApiError(null);
     try {
       await submitOptIn(data, assessmentId);
+      toast.success('Successfully submitted!');
       router.push('/thank-you');
     } catch (err: any) {
       console.error('Opt-in submission error:', err);
-      setApiError(err.message || 'Something went wrong. Please check your inputs and try again.');
+      toast.error(err.message || 'Something went wrong. Please check your inputs and try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -65,12 +65,6 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
           Our team of specialists will send you a tailored video exercise guide. Enter your details below.
         </p>
       </div>
-
-      {apiError && (
-        <div className="p-4 bg-red-50 border-2 border-red-500 text-red-900 rounded-xl font-bold text-lg" role="alert">
-          {apiError}
-        </div>
-      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
