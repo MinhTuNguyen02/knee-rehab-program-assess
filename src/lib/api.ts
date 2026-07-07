@@ -16,7 +16,8 @@ export async function submitAssessment(pain: number, func: number): Promise<Asse
     throw new Error(errorData.message || 'Failed to submit assessment');
   }
 
-  return response.json();
+  const json = await response.json();
+  return json.data || json;
 }
 
 export async function submitOptIn(
@@ -49,5 +50,6 @@ export async function submitOptIn(
     throw new Error(errorData.message || 'Failed to submit registration');
   }
 
-  return response.json();
+  const json = await response.json();
+  return json.data || json;
 }
