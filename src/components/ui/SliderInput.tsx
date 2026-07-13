@@ -74,11 +74,10 @@ export const SliderInput: React.FC<SliderInputProps> = ({
               key={i}
               type="button"
               onClick={() => onChange(i)}
-              className={`w-8 h-8 flex items-center justify-center rounded-full text-base transition-all ${
-                i === value
+              className={`w-8 h-8 flex items-center justify-center rounded-full text-base transition-all ${i === value
                   ? 'font-black text-[#007a87] text-lg bg-teal-50 border border-teal-200'
                   : 'font-bold text-slate-400 hover:text-slate-650'
-              }`}
+                }`}
               aria-label={`Set value to ${i}`}
             >
               {i}

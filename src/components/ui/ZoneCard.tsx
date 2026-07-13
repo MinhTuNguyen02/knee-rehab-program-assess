@@ -50,7 +50,7 @@ export const ZoneCard: React.FC<ZoneCardProps> = ({
           </div>
           <h2 className="text-2xl md:text-3xl font-black tracking-tight leading-tight">{title}</h2>
         </div>
-        
+
         {displayScore !== undefined && (
           <div className="flex flex-col items-center justify-center">
             <div className={`flex flex-col items-center justify-center h-32 w-32 md:h-40 md:w-40 rounded-full border-4 shadow-xl ${currentStyle.scoreText} bg-white`}>
