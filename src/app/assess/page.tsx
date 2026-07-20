@@ -35,26 +35,31 @@ export default function AssessmentPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-center py-10 px-4 md:px-6 max-w-2xl mx-auto w-full space-y-8">
+    <div className="flex-1 flex flex-col justify-center py-12 px-4 md:px-8 max-w-2xl mx-auto w-full space-y-10 animate-fade-in-up">
       {/* Step Header */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2">
-          <span className="h-1 w-6 bg-[#007a87] rounded-full"></span>
-          <span className="text-sm font-extrabold text-[#007a87] uppercase tracking-wider">
-            ASSESS YOUR KNEE
+      <div className="space-y-4 text-left">
+        <div className="flex items-center gap-2.5">
+          <span className="h-1 w-6 bg-primary rounded-full"></span>
+          <span className="text-xs font-black text-primary uppercase tracking-widest">
+            Knee Symptom Evaluation
           </span>
         </div>
         <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-          Understand Your Knee Symptoms
+          Quantify Your Current Joint Condition
         </h1>
-        <p className="text-lg text-slate-600 font-medium leading-relaxed">
-          This quick assessment helps you better understand how your knee is affecting your pain and daily function and guides your next step.
+        <p className="text-base md:text-lg text-slate-500 font-semibold leading-relaxed">
+          Provide information regarding your knee sensations and active mobility over the last week. Your data will be calculated against clinical safety threshold metrics.
         </p>
       </div>
 
       {apiError && (
-        <div className="p-4 bg-red-50 border-2 border-red-500 text-red-900 rounded-xl font-bold text-lg" role="alert">
-          ⚠️ {apiError}
+        <div className="p-4.5 bg-red-50 border border-red-200 text-red-900 rounded-2xl font-bold text-base flex items-start gap-2.5" role="alert">
+          <svg className="w-6 h-6 text-red-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <span>{apiError}</span>
         </div>
       )}
 
@@ -63,15 +68,15 @@ export default function AssessmentPage() {
           {/* Question 1: Pain */}
           <SliderInput
             id="pain-slider"
-            questionNumber="QUESTION 1 — PAIN"
+            questionNumber="Question 1 — Pain Severity"
             questionText={
               <span>
-                Over the past <strong className="font-extrabold text-slate-900">7 days</strong>, how much pain has your knee caused during your daily activities?
+                Over the past <strong className="font-extrabold text-slate-900">7 days</strong>, how much pain has your knee caused during daily dynamic movements?
               </span>
             }
-            subText="0 = no pain · 10 = worst pain imaginable"
+            subText="0 = absolute comfort · 10 = extreme pain trigger"
             minLabel="No pain"
-            maxLabel="Worst pain imaginable"
+            maxLabel="Severe pain"
             value={pain}
             onChange={setPain}
           />
@@ -79,15 +84,15 @@ export default function AssessmentPage() {
           {/* Question 2: Function */}
           <SliderInput
             id="func-slider"
-            questionNumber="QUESTION 2 — FUNCTION"
+            questionNumber="Question 2 — Functional Restriction"
             questionText={
               <span>
-                Over the past <strong className="font-extrabold text-slate-900">7 days</strong>, how much has your knee limited your daily activities?
+                Over the past <strong className="font-extrabold text-slate-900">7 days</strong>, to what degree has your knee restricted typical daily activities?
               </span>
             }
-            subText="0 = no limitation · 10 = unable to perform daily activities"
-            minLabel="Not affected"
-            maxLabel="Unable to perform daily activities"
+            subText="0 = no restriction · 10 = complete loss of action"
+            minLabel="Full function"
+            maxLabel="Unable to move"
             value={func}
             onChange={setFunc}
           />
@@ -101,9 +106,9 @@ export default function AssessmentPage() {
             size="lg"
             fullWidth
             isLoading={isLoading}
-            className="rounded-2xl"
+            className="rounded-2xl shadow-md"
           >
-            View Your Result →
+            Calculate My Knee Score
           </Button>
 
           <Button
@@ -112,9 +117,9 @@ export default function AssessmentPage() {
             size="sm"
             fullWidth
             onClick={handleBack}
-            className="rounded-2xl text-slate-600 border border-slate-300 hover:bg-slate-50"
+            className="rounded-xl"
           >
-            ← BACK
+            Back to Home
           </Button>
         </div>
       </form>

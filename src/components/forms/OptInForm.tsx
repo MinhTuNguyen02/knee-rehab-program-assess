@@ -56,13 +56,13 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+    <div className="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-[0_4px_24px_rgba(0,0,0,0.015)] space-y-6 transition-all duration-200 hover:shadow-[0_6px_30px_rgba(0,122,135,0.03)]">
       <div className="space-y-2">
-        <h3 className="text-2xl font-black text-slate-900 leading-tight">
-          Get Your Free Personalized Rehab Plan
+        <h3 className="text-xl md:text-2xl font-black text-slate-900 leading-tight">
+          Enter Your Details to Begin Setup
         </h3>
-        <p className="text-lg text-slate-650 font-medium leading-relaxed">
-          Our team of specialists will send you a tailored video exercise guide. Enter your details below.
+        <p className="text-sm md:text-base text-slate-450 font-semibold leading-relaxed">
+          Provide your clinical markers and basic contact details. Your information is protected under standard security privacy protocols.
         </p>
       </div>
 
@@ -70,7 +70,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* First Name */}
           <div className="space-y-2">
-            <label htmlFor="firstName" className="text-lg font-bold text-slate-800 block">
+            <label htmlFor="firstName" className="text-sm font-black text-slate-600 block uppercase tracking-wider">
               First Name:
             </label>
             <input
@@ -78,12 +78,12 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
               {...register('firstName')}
               required
               type="text"
-              placeholder="John"
-              className="w-full min-h-[48px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
+              placeholder="e.g. John"
+              className="w-full min-h-[48px] px-4 py-3 text-base border-2 border-slate-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition duration-200 font-bold placeholder-slate-400"
               aria-invalid={errors.firstName ? 'true' : 'false'}
             />
             {errors.firstName && (
-              <p className="text-red-600 font-bold text-base mt-1" role="alert">
+              <p className="text-red-600 font-black text-sm mt-1" role="alert">
                 {errors.firstName.message}
               </p>
             )}
@@ -91,7 +91,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
 
           {/* Last Name */}
           <div className="space-y-2">
-            <label htmlFor="lastName" className="text-lg font-bold text-slate-800 block">
+            <label htmlFor="lastName" className="text-sm font-black text-slate-600 block uppercase tracking-wider">
               Last Name:
             </label>
             <input
@@ -99,12 +99,12 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
               {...register('lastName')}
               required
               type="text"
-              placeholder="Doe"
-              className="w-full min-h-[48px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
+              placeholder="e.g. Doe"
+              className="w-full min-h-[48px] px-4 py-3 text-base border-2 border-slate-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition duration-200 font-bold placeholder-slate-400"
               aria-invalid={errors.lastName ? 'true' : 'false'}
             />
             {errors.lastName && (
-              <p className="text-red-600 font-bold text-base mt-1" role="alert">
+              <p className="text-red-600 font-black text-sm mt-1" role="alert">
                 {errors.lastName.message}
               </p>
             )}
@@ -113,7 +113,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
 
         {/* Email — full width */}
         <div className="space-y-2">
-          <label htmlFor="email" className="text-lg font-bold text-slate-800 block">
+          <label htmlFor="email" className="text-sm font-black text-slate-600 block uppercase tracking-wider">
             Email Address:
           </label>
           <input
@@ -126,12 +126,12 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
             })}
             required
             type="email"
-            placeholder="john.doe@example.com"
-            className="w-full min-h-[48px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
+            placeholder="e.g. john.doe@example.com"
+            className="w-full min-h-[48px] px-4 py-3 text-base border-2 border-slate-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition duration-200 font-bold placeholder-slate-400"
             aria-invalid={errors.email ? 'true' : 'false'}
           />
           {errors.email && (
-            <p className="text-red-600 font-bold text-base mt-1" role="alert">
+            <p className="text-red-600 font-black text-sm mt-1" role="alert">
               {errors.email.message}
             </p>
           )}
@@ -139,8 +139,8 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
 
         {/* Mobile Phone — full width with country selector */}
         <div className="space-y-2">
-          <label htmlFor="mobile" className="text-lg font-bold text-slate-800 block">
-            Mobile:
+          <label htmlFor="mobile" className="text-sm font-black text-slate-600 block uppercase tracking-wider">
+            Mobile Number:
           </label>
           <Controller
             name="mobile"
@@ -154,16 +154,16 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
               <PhoneInput
                 international
                 defaultCountry="AU"
-                placeholder="Enter phone number"
+                placeholder="Enter mobile phone number"
                 value={value}
                 onChange={(val) => onChange(val || '')}
                 id="mobile"
-                className="phone-input-custom"
+                className="phone-input-custom font-bold"
               />
             )}
           />
           {errors.mobile && (
-            <p className="text-red-600 font-bold text-base mt-1" role="alert">
+            <p className="text-red-600 font-black text-sm mt-1" role="alert">
               {errors.mobile.message}
             </p>
           )}
@@ -172,7 +172,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
         <div className={`grid grid-cols-1 ${assessmentId ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6`}>
           {/* Age */}
           <div className="space-y-2">
-            <label htmlFor="age" className="text-lg font-bold text-slate-800 block">
+            <label htmlFor="age" className="text-sm font-black text-slate-600 block uppercase tracking-wider">
               Age:
             </label>
             <input
@@ -186,12 +186,12 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
               max={120}
               required
               type="number"
-              placeholder="Year"
-              className="w-full h-[56px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition"
+              placeholder="e.g. 45"
+              className="w-full h-[52px] px-4 py-3 text-base border-2 border-slate-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition duration-200 font-bold placeholder-slate-400"
               aria-invalid={errors.age ? 'true' : 'false'}
             />
             {errors.age && (
-              <p className="text-red-650 font-bold text-base mt-1" role="alert">
+              <p className="text-red-655 font-black text-sm mt-1" role="alert">
                 {errors.age.message}
               </p>
             )}
@@ -199,13 +199,13 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
 
           {/* Gender */}
           <div className="space-y-2">
-            <label htmlFor="gender" className="text-lg font-bold text-slate-800 block">
+            <label htmlFor="gender" className="text-sm font-black text-slate-600 block uppercase tracking-wider">
               Gender:
             </label>
             <select
               id="gender"
               {...register('gender', { required: 'Please select your gender' })}
-              className="w-full h-[56px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition cursor-pointer"
+              className="w-full h-[52px] px-4 py-3 text-base border-2 border-slate-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition duration-205 cursor-pointer font-bold placeholder-slate-400"
               aria-invalid={errors.gender ? 'true' : 'false'}
             >
               <option value="">Select...</option>
@@ -214,7 +214,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
               <option value="other">Other</option>
             </select>
             {errors.gender && (
-              <p className="text-red-650 font-bold text-base mt-1" role="alert">
+              <p className="text-red-655 font-black text-sm mt-1" role="alert">
                 {errors.gender.message}
               </p>
             )}
@@ -223,13 +223,13 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
           {/* Knee Side (Only shown if coming from an assessment) */}
           {assessmentId && (
             <div className="space-y-2">
-              <label htmlFor="kneeSide" className="text-lg font-bold text-slate-800 block">
-                Knee Side:
+              <label htmlFor="kneeSide" className="text-sm font-black text-slate-600 block uppercase tracking-wider">
+                Affected Knee Side:
               </label>
               <select
                 id="kneeSide"
                 {...register('kneeSide')}
-                className="w-full h-[56px] px-4 py-3 text-lg border-2 border-slate-200 rounded-xl focus:border-[#007a87] focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition cursor-pointer"
+                className="w-full h-[52px] px-4 py-3 text-base border-2 border-slate-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-teal-100 outline-none bg-slate-50 focus:bg-white transition duration-205 cursor-pointer font-bold placeholder-slate-400"
                 aria-invalid={errors.kneeSide ? 'true' : 'false'}
               >
                 <option value="">Select...</option>
@@ -238,7 +238,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
                 <option value="both">Both Knees</option>
               </select>
               {errors.kneeSide && (
-                <p className="text-red-650 font-bold text-base mt-1" role="alert">
+                <p className="text-red-655 font-black text-sm mt-1" role="alert">
                   {errors.kneeSide.message}
                 </p>
               )}
@@ -247,53 +247,53 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
         </div>
 
         {/* Notification Preferences */}
-        <div className="space-y-4 bg-slate-50 p-6 rounded-2xl border border-slate-200">
-          <span className="text-lg font-bold text-slate-800 block">
-            Notifications (optional)
+        <div className="space-y-4 bg-slate-50/60 p-6 rounded-2xl border border-slate-200/50">
+          <span className="text-sm font-black text-slate-700 block uppercase tracking-wider">
+            Rehabilitation Notifications (Optional)
           </span>
           <div className="flex flex-col gap-4">
-            <label className="flex items-start gap-3 text-lg font-medium text-slate-700 cursor-pointer min-h-[48px]">
+            <label className="flex items-start gap-3.5 text-base font-semibold text-slate-600 cursor-pointer min-h-[36px]">
               <input
                 type="checkbox"
                 {...register('notificationPrefs.followUpKRP')}
-                className="w-6 h-6 border-2 border-slate-400 rounded accent-[#007a87] mt-1 focus-visible:ring-4 focus-visible:ring-teal-500/30 outline-none"
+                className="w-5.5 h-5.5 border-2 border-slate-300 rounded accent-primary mt-0.5 focus-visible:ring-4 focus-visible:ring-teal-500/20 outline-none"
               />
-              <span className="leading-snug select-none">Send me a follow-up KRP score in 2 weeks</span>
+              <span className="leading-snug select-none">Send me a follow-up KRP assessment scorecard in 2 weeks</span>
             </label>
-            <label className="flex items-start gap-3 text-lg font-medium text-slate-700 cursor-pointer min-h-[48px]">
+            <label className="flex items-start gap-3.5 text-base font-semibold text-slate-600 cursor-pointer min-h-[36px]">
               <input
                 type="checkbox"
                 {...register('notificationPrefs.kneeGuidance')}
-                className="w-6 h-6 border-2 border-slate-400 rounded accent-[#007a87] mt-1 focus-visible:ring-4 focus-visible:ring-teal-500/30 outline-none"
+                className="w-5.5 h-5.5 border-2 border-slate-300 rounded accent-primary mt-0.5 focus-visible:ring-4 focus-visible:ring-teal-500/20 outline-none"
               />
-              <span className="leading-snug select-none">Send me guidance to help improve my knee</span>
+              <span className="leading-snug select-none">Send me custom rehab tips and joint care guides</span>
             </label>
-            <label className="flex items-start gap-3 text-lg font-medium text-slate-700 cursor-pointer min-h-[48px]">
+            <label className="flex items-start gap-3.5 text-base font-semibold text-slate-600 cursor-pointer min-h-[36px]">
               <input
                 type="checkbox"
                 {...register('notificationPrefs.reassessReminder')}
-                className="w-6 h-6 border-2 border-slate-400 rounded accent-[#007a87] mt-1 focus-visible:ring-4 focus-visible:ring-teal-500/30 outline-none"
+                className="w-5.5 h-5.5 border-2 border-slate-300 rounded accent-primary mt-0.5 focus-visible:ring-4 focus-visible:ring-teal-500/20 outline-none"
               />
-              <span className="leading-snug select-none">Notify me when it may be helpful to reassess my symptoms</span>
+              <span className="leading-snug select-none">Notify me when it may be time to reassess my symptoms</span>
             </label>
           </div>
         </div>
 
         {/* Consent Accepted */}
         <div className="space-y-2">
-          <label className="flex items-start gap-3 text-lg font-medium text-slate-700 cursor-pointer">
+          <label className="flex items-start gap-3.5 text-base font-semibold text-slate-600 cursor-pointer">
             <input
               id="consentAccepted"
               type="checkbox"
-              {...register('consentAccepted', { required: 'You must accept the terms to proceed' })}
-              className="w-6 h-6 border-2 border-slate-400 rounded accent-[#007a87] mt-1 focus-visible:ring-4 focus-visible:ring-teal-500/30 outline-none"
+              {...register('consentAccepted', { required: 'You must accept the data consent terms to proceed' })}
+              className="w-5.5 h-5.5 border-2 border-slate-300 rounded accent-primary mt-0.5 focus-visible:ring-4 focus-visible:ring-teal-500/20 outline-none"
             />
-            <span className="leading-snug select-none text-slate-650 font-medium">
-              I consent to the collection of my knee assessment data and agree to the Terms of Service and Privacy Policy.
+            <span className="leading-snug select-none text-slate-500 font-semibold">
+              I consent to the collection of my joint assessment scores and details in alignment with the Privacy Policy.
             </span>
           </label>
           {errors.consentAccepted && (
-            <p className="text-red-600 font-bold text-base mt-1" role="alert">
+            <p className="text-red-655 font-black text-sm mt-1" role="alert">
               {errors.consentAccepted.message}
             </p>
           )}
@@ -307,7 +307,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
             fullWidth
             isLoading={isSubmitting}
           >
-            Submit & Receive My Program ➔
+            Activate My Recovery Program
           </Button>
 
           {assessmentId && (
@@ -318,7 +318,7 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
               fullWidth
               onClick={() => router.push('/thank-you')}
             >
-              Skip for now
+              Skip Registration
             </Button>
           )}
 
@@ -328,9 +328,9 @@ export const OptInForm: React.FC<OptInFormProps> = ({ assessmentId }) => {
             size="sm"
             fullWidth
             onClick={() => router.back()}
-            className="rounded-2xl text-slate-600 border border-slate-300 hover:bg-slate-50"
+            className="rounded-xl"
           >
-            ← BACK
+            Back
           </Button>
         </div>
       </form>

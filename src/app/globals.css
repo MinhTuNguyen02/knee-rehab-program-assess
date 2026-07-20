@@ -1,25 +1,134 @@
 @import "tailwindcss";
 
 @theme {
+  --color-background: #f4f7f6;
+  --color-foreground: #1e293b;
+  --color-primary: #007a87;
+  --color-primary-hover: #006670;
+  --color-primary-active: #00525a;
   --color-krp-green: #10B981;
   --color-krp-amber: #F59E0B;
   --color-krp-red: #EF4444;
+
+  --color-zone-green: #10B981;
+  --color-zone-amber: #F59E0B;
+  --color-zone-red: #EF4444;
+
+  --animate-fade-in: fadeIn 0.5s ease-out forwards;
+  --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSubtle {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.02);
+    opacity: 0.95;
+  }
 }
 
 :root {
-  --background: #f5f8fa; /* Soft off-white with slight blue/teal tint */
-  --foreground: #1e293b; /* Softer dark gray slate-800 */
-  --primary: #007a87; /* Soft premium teal */
+  --background: #f4f7f6;
+  /* Calmer healthcare off-white with touch of green/teal tint */
+  --foreground: #1e293b;
+  --primary: #007a87;
   --primary-hover: #006670;
   --primary-active: #00525a;
+
+  --zone-green: #10B981;
+  --zone-amber: #F59E0B;
+  --zone-red: #EF4444;
+
+  --radius: 1rem;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px; /* text-lg per rules */
+  font-size: 18px;
   line-height: 1.6;
+}
+
+/* Zone-based theming from patient portal, adapted for light mode only */
+body.zone-green {
+  --zone-bg: #E8F5E9;
+  --zone-color: #1B5E20;
+  --zone-border: #C8E6C9;
+}
+
+body.zone-amber {
+  --zone-bg: #FFF8E1;
+  --zone-color: #B75300;
+  --zone-border: #FFE082;
+}
+
+body.zone-red {
+  --zone-bg: #FFEBEE;
+  --zone-color: #C62828;
+  --zone-border: #FFCDD2;
+}
+
+body[class*="zone-"] {
+  transition: background-color 0.5s ease;
+}
+
+body[class*="zone-"] .var-zone-bg {
+  background-color: color-mix(in srgb, var(--zone-bg) 25%, #f4f7f6 75%) !important;
+  transition: background-color 0.5s ease;
+}
+
+body[class*="zone-"] header {
+  background-color: color-mix(in srgb, var(--zone-bg) 30%, rgba(255, 255, 255, 0.75) 70%) !important;
+  border-bottom-color: var(--zone-border) !important;
+  border-bottom-width: 1.5px !important;
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+body[class*="zone-"] .zone-summary-card {
+  border-color: var(--zone-border) !important;
+  background-color: color-mix(in srgb, var(--zone-bg) 35%, #ffffff 65%) !important;
+  box-shadow: 0 10px 25px -5px color-mix(in srgb, var(--zone-border) 25%, transparent 75%) !important;
+  transition: border-color 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+body[class*="zone-"] .zone-summary-cta {
+  background-color: var(--zone-color) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px 0 color-mix(in srgb, var(--zone-color) 35%, transparent 65%) !important;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+body[class*="zone-"] .zone-summary-cta:hover {
+  background-color: color-mix(in srgb, var(--zone-color) 85%, #000000 15%) !important;
+  box-shadow: 0 6px 20px 0 color-mix(in srgb, var(--zone-color) 50%, transparent 50%) !important;
 }
 
 /* Custom styled range input for accessible 48px touch targets */
@@ -27,8 +136,8 @@ body {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 12px;
-  border-radius: 6px;
+  height: 8px;
+  border-radius: 9999px;
   outline: none;
   background: #e2e8f0;
 }
@@ -36,50 +145,52 @@ body {
 .accessible-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--primary);
   border: 4px solid #ffffff;
-  box-shadow: 0 8px 30px rgba(0, 122, 135, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 122, 135, 0.3);
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
 }
 
 .accessible-slider::-webkit-slider-thumb:hover {
   background: var(--primary-hover);
-  transform: scale(1.05);
-  box-shadow: 0 12px 40px rgba(0, 122, 135, 0.5);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 122, 135, 0.45);
 }
 
 .accessible-slider::-webkit-slider-thumb:active {
   background: var(--primary-active);
+  transform: scale(0.95);
 }
 
 .accessible-slider::-moz-range-thumb {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--primary);
   border: 4px solid #ffffff;
-  box-shadow: 0 8px 30px rgba(0, 122, 135, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 122, 135, 0.3);
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
 }
 
 .accessible-slider::-moz-range-thumb:hover {
   background: var(--primary-hover);
-  transform: scale(1.05);
-  box-shadow: 0 12px 40px rgba(0, 122, 135, 0.5);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 122, 135, 0.45);
 }
 
 .accessible-slider::-moz-range-thumb:active {
   background: var(--primary-active);
+  transform: scale(0.95);
 }
 
 .accessible-slider:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(0, 122, 135, 0.4); /* ring soft teal */
+  box-shadow: 0 0 0 4px rgba(0, 122, 135, 0.4);
 }
 
 /* ─── Phone Input (react-phone-number-input) ─── */
@@ -103,7 +214,6 @@ body {
   box-shadow: 0 0 0 2px rgba(204, 251, 241, 0.6);
 }
 
-/* Country selector button */
 .phone-input-custom .PhoneInputCountry {
   margin-right: 0.75rem;
   padding-right: 0.75rem;
@@ -120,7 +230,6 @@ body {
   opacity: 0.5;
 }
 
-/* Phone number input field */
 .phone-input-custom .PhoneInputInput {
   flex: 1;
   border: none;
